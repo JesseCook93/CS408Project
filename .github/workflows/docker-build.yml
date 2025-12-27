@@ -23,5 +23,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Build Docker Images
         run: |
-          make init
-          make build
+          chmod +x ./dev.sh
+          ./dev.sh init
+          ./dev.sh build

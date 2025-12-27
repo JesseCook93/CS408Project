@@ -35,8 +35,9 @@ jobs:
           password: ${{ env.DOCKER_PAT }}
       - name: Build Docker Images
         run: |
-          make init
-          make build
+          chmod +x ./dev.sh
+          ./dev.sh init
+          ./dev.sh build
       - name: Push Docker Images to Docker Hub
         run: |
-          make push
+          ./dev.sh push

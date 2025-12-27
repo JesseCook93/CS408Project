@@ -29,7 +29,8 @@ jobs:
         run: |
           echo "${{ secrets.EC2_KEY }}" > "${{ env.EC2_KEY_NAME }}"
           chmod 600 "${{ env.EC2_KEY_NAME }}"
-          make init
+          chmod +x ./dev.sh
+          ./dev.sh init
           mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
           ssh-keyscan ${{ env.EC2_DEPLOY_HOST }} >> ~/.ssh/known_hosts
-          make deploy
+          ./dev.sh deploy

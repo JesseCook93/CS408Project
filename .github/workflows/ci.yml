@@ -10,6 +10,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  script-validation:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Test dev.sh script
+      run: |
+        chmod +x .github/scripts/test-dev-script.sh
+        bash .github/scripts/test-dev-script.sh
+
   unit-tests:
     runs-on: ubuntu-latest
 

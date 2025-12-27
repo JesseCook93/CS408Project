@@ -5,23 +5,9 @@ application to an AWS EC2 instance using Docker containers. This method
 simplifies the deployment process by encapsulating the application and its
 dependencies within Docker containers, making it easier to manage and scale.
 
-The deployment process uses a `Makefile` to automate common tasks such as building
-Docker images, pushing them to Docker Hub, and deploying them to the EC2 instance.
-
-The `Makefile` includes the following targets:
-
-    Makefile commands:
-      env      - Check if .env file exists
-      init     - Initialize production setup by generating docker-compose.yml and ec2-ssh.sh
-      validate - Validate Docker Hub and EC2 credentials in .env file
-      up       - Start the Docker Compose services in production mode
-      down     - Stop the Docker Compose services
-      build    - Build Docker images without using cache
-      push     - Push Docker images to Docker Hub
-      deploy   - Deploy the application to the EC2 instance
-      logs     - View real-time logs from the EC2 instance
-      clean    - Clean up Docker resources and data volumes
-      help     - Show this help message
+The deployment process uses the `dev.sh` script to automate common tasks such as
+building Docker images, pushing them to Docker Hub, and deploying them to the EC2
+instance.
 
 ## Prerequisites
 
@@ -75,10 +61,16 @@ Open the `.env` file in a text editor and fill in the required values:
 
 ## Step 3: Validate your Configuration
 
-Run the following command to validate your Docker Hub credentials and EC2
-connection:
+Run the following commands to validate your configuration:
 ```bash
-make validate
+# Validate Docker Hub credentials
+./dev.sh docker
+
+# Validate EC2 SSH connectivity and required env vars
+./dev.sh ec2
+
+# Or run both
+./dev.sh login
 ```
 
 If the validation is successful, you should see something like this:
@@ -100,12 +92,11 @@ needs to be fixed.
 
 ## Step 4: Initialize the Production Setup
 
-Run the following command to initialize the production setup. This will generate
-the `docker-compose.yml` file and the `ec2-ssh.sh` script based on your
+Initialize the production setup. This generates `docker-compose.yml` based on your
 `.env` configuration:
 
 ```bash
-make init
+./dev.sh init
 ```
 You should see two files created: `docker-compose.yml` and `ec2-ssh.sh`. The
 `ec2-ssh.sh` script is used to connect to your EC2 instance via SSH. And the
@@ -114,10 +105,10 @@ You should see two files created: `docker-compose.yml` and `ec2-ssh.sh`. The
 ## Step 5: Run the Application
 
 Make sure your project builds and runs locally before deploying to production.
-Run the following command to start the Docker Compose services in production mode:
+Start the Docker Compose services in production mode:
 
 ```bash
-make up
+./dev.sh up
 ```
 
 You should see output indicating that the services are starting up. Test the
@@ -127,21 +118,20 @@ functionality as well.
 
 ## Step 6: Build Docker Images and Push to Docker Hub
 
-Once you have confirmed that the application is working correctly locally, run the
-following command to build and push the Docker images to Docker Hub:
+Once you have confirmed that the application is working correctly locally, build and
+push the Docker images to Docker Hub:
 
 ```bash
-make build
-make push
+./dev.sh build
+./dev.sh push
 ```
 
 # Step 7: Deploy to AWS EC2
 
-Finally, run the following command to deploy the application to your AWS EC2
-instance:
+Finally, deploy the application to your AWS EC2 instance:
 
 ```bash
-make deploy
+./dev.sh deploy
 ```
 You should see output indicating that the deployment is in progress. Once the
 deployment is complete, you can access your application using the Public DNS of
@@ -149,10 +139,10 @@ your EC2 instance in your web browser.
 
 ## Viewing Logs
 
-To view real-time logs from your EC2 instance, run the following command:
+To view real-time logs from your EC2 instance:
 
 ```bash
-make logs
+./dev.sh logs
 ```
 
 You should see the logs from your Docker containers streaming in your terminal.

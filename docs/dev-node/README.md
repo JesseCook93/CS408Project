@@ -44,6 +44,34 @@ running the application. The project provides the following npm scripts:
   tests and inspect the application state during test execution. This also requires a
   graphical environment and may not work in headless setups like CodeSpaces.
 
+## Build Script
+
+A `dev.sh` script is provided at the root of the repository to simplify common
+tasks such as building the application, running tests, and cleaning up files. You
+can run the script with different commands as arguments. For example, to build
+the application, run:
+```bash
+./dev.sh build
+```
+
+To see all available commands, run:
+```bash
+./dev.sh help
+```
+
+Validation commands (for Docker/EC2 deployment readiness):
+
+```bash
+# Check Docker Hub authentication
+./dev.sh docker
+
+# Check EC2 SSH connectivity and required env vars
+./dev.sh ec2
+
+# Or run both in one go
+./dev.sh login
+```
+
 ## Local Machine (Unsupported)
 
 **Important:** This method is unsupported the department does not provide help
