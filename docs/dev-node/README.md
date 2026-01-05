@@ -7,7 +7,7 @@ on GitHub [CodeSpaces](https://github.com/features/codespaces). Fork the
 repository and create a new CodeSpace to get started quickly without needing to
 install any software locally.
 
-## Prequisites
+## Software Requirements
 
 Make sure you have the following installed on your development machine:
 
