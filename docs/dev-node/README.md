@@ -73,6 +73,10 @@ running the application. The project provides the following npm scripts:
 - Install [Docker](https://docs.docker.com/get-docker/) on your local machine.
 - Ensure Docker is running before starting the application.
 
+**IMPORTANT:** When installing Docker on Windows machines, make sure to select
+"Use the WSL 2 based engine" during installation.
+
+
 A `dev.sh` script is provided at the root of the repository to simplify common
 tasks such as building the application, running tests, and cleaning up files.
 You can run the script with different commands as arguments. For example, to
