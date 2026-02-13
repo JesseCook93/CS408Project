@@ -286,14 +286,13 @@ cmd_new() {
 
   # Auto-install bash completion
   echo ""
-  echo "Would you like to enable bash completion for dev.sh? (y/n  default: y)"
+  echo "Would you like to enable bash completion for dev.sh? (y/n  default: n)"
   read -r enable_completion
   if [ "$enable_completion" != "n" ] && [ "$enable_completion" != "N" ]; then
     install_completion
   fi
 
-  echo "If you are using EC2 deployment, run './dev.sh login' to verify connectivity."
-  echo "Run './dev.sh up' to start the application."
+  echo "Run './dev.sh build install' to build and install the application."
 }
 
 install_completion() {
