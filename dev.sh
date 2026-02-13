@@ -242,11 +242,11 @@ cmd_new() {
   echo "Are you deploying to an AWS EC2 instance? (y/n  default: n)"
   read -r has_ec2
   if [ "$has_ec2" != "n" ] && [ "$has_ec2" != "N" ] && [ "$has_ec2" != "" ]; then
-      echo "What is the EC2 deploy host (ec2-xx-xxx-xx-xx.us-west-2.compute.amazonaws.com)?"
+      echo "What is the EC2 public IP?"
       read -r ec2_deploy_host
       EC2_DEPLOY_HOST=$ec2_deploy_host
       echo "Your EC2 SSH key must be located in the $HOME/.ssh directory or validation will fail."
-      echo "What is the name of your EC2 SSH key (e.g., cs123-shanepanter-sshkey.pem)?"
+      echo "What is the name of your EC2 SSH key (e.g., aws-yourname.pem)?"
       read -r ec2_key_name
       EC2_KEY_NAME=$ec2_key_name
       echo "Check for AWS SSH key..."
