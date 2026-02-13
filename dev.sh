@@ -124,9 +124,7 @@ cmd_deploy() {
 cmd_install() {
   load_env
   echo "Installing web app on EC2 instance..."
-  "mkdir -p ${EC2_DEPLOY_DIR}"
-  cp docker-compose.yml "${EC2_DEPLOY_DIR}/docker-compose.yml"
-  cd ${EC2_DEPLOY_DIR} && docker compose up -d --remove-orphans
+  docker compose up -d --remove-orphans
 }
 
 cmd_logs() {
